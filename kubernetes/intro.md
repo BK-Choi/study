@@ -34,6 +34,10 @@ Orchestration의 끝판왕
     - local volume spec은 삭제됨
     - 장점? 단점?
 
+살짝 들여다보면 이래요
+![](https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg)
+![](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
+
 기능에 대한 자세한 설명은 Kubernetes.io 문서로 토스
 
 ## versus docker swarm
@@ -46,6 +50,8 @@ Orchestration의 끝판왕
 
 # Conclusion
 아직도 안써봤니?
+NCC 가도 되겠다. 3년 뒤에.
+
 
 # News
 - kNative, Kubeless; K8s X Serverless
