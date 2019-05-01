@@ -1,6 +1,7 @@
 # CoreDNS
 
 - DNS Server
+  - TLS, gRPC, HTTPS 지원
 - Kubernetes에서 기본 DNS로 채용하여 Cloud native DNS server로 사용
   - K8s 1.13 부터 공식채용이라고 하지만 1.11부터 기본적용 되어 있음
   - kube-dns로도 변경 가능
@@ -9,14 +10,19 @@
 - 역시 구글러가 만듦; Miek Gieben
 
 ## 장점
-- flexible
-	- pipeline : plugin을 연결해서 각 DNS기능을 chaining
-	- 필요한 plugin만 선별해서 compile 가능. 무겁지 않음.
-- memory-efficient
-  - kube-dns는 인스턴스가 3개가 떠있어서 기본적으로 메모리를 더 사용.
-- core-efficient
-  - kube-dns는 C 언어로 짜여 있어서 core를 하나씩 밖에 사용하지 못함.
-- negative caching
+- flexible; pipelining plug-ins
+  - plugin을 연결해서 각 DNS기능을 chaining
+  - zone별로 다른 chain 구현 가능; (protocol X zone name X port) 조합별로
+  ![](coredns-query-processing.png)
+  - [plugin 종류](https://coredns.io/plugins/)
+  - 필요한 plugin만 선별해서 compile 가능. 무겁지 않음.
+- [vs. kube-dns](https://coredns.io/2018/11/27/cluster-dns-coredns-vs-kube-dns/)
+  - memory-efficient
+    - kube-dns는 인스턴스가 3개가 떠있어서 기본적으로 메모리를 더 사용.
+  - core-efficient
+    - kube-dns는 single thread로 동작하기에 인스턴스당 core를 하나만 사용함.
+  - external-query-efficient
+    - kube-dns는 negative cache를 적용해도 느리더라
 
 ## kubernetes에서의 용도
 K8s의 구성요소 : Master, Node, **Add-on**
@@ -34,6 +40,7 @@ K8s의 구성요소 : Master, Node, **Add-on**
 - 실제로 클러스터 내에서 동작하는 DNS 서버
   - K8s 서비스들에게 DNS 레코드를 제공
   - K8s 컨테이너들은 자동으로 DNS서버에 등록됨
+  - 인프라 직원 안 거치고 바로 변경가능한.....게 좋은거 같은데 일이 늘어나는게 안좋은거 같은데요.
 - [k8s DNS Spec.](https://github.com/kubernetes/dns/blob/master/docs/specification.md)의 구현체
   - Kubernetes가 DNS-Based service discovery를 하기 위한 스펙
   - 이 스펙의 구현체가 DNS add-on
@@ -45,15 +52,12 @@ K8s의 구성요소 : Master, Node, **Add-on**
     - 이걸 모르고 쓰는 사람은 이게 또 새로운 혼란포인트
 	    - "core-dns, kube-dns 두개가 떠있는건가요??"
 
-### 경쟁서비스
-BIND, Knot, PowerDNS, NSD, Unbound, ...
-
 
 # 결론
-인프라에서 잘 해줬음 좋겠다
+Application 개발자는 API나 UI를 기다리자.
 
 # 참고
-- [성능 홍보](https://coredns.io/2018/11/27/cluster-dns-coredns-vs-kube-dns/)
-- [애드온](https://arisu1000.tistory.com/27828)
-  - 이 블로그 참 잘 정리해뒀네요
-
+- [Cluster DNS: CoreDNS vs Kube-DNS](https://coredns.io/2018/11/27/cluster-dns-coredns-vs-kube-dns/)
+- [How Queries Are Processed in CoreDNS](https://coredns.io/2017/06/08/how-queries-are-processed-in-coredns/)
+- [애드온 개념](https://arisu1000.tistory.com/27828)
+  - 이 블로그 개념정리가 참 찰지네요
