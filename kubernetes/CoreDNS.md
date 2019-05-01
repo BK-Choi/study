@@ -1,6 +1,5 @@
 ![](coredns-logo.png)
 - DNS Server
-  - TLS, gRPC, HTTPS 지원
 - Kubernetes에서 기본 DNS로 채용하여 Cloud native DNS server로 사용
   - K8s 1.13 부터 공식채용이라고 하지만 1.11부터 기본적용 되어 있음
   - kube-dns로도 변경 가능
