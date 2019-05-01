@@ -10,7 +10,7 @@
 ## 장점
 - flexible; pipelining plug-ins
   - plugin을 연결해서 각 DNS기능을 chaining
-  - zone별로 다른 chain 구현 가능; (protocol X zone name X port) 조합별로
+  - 요청마다 다른 chain 적용 가능; (protocol X zone name X port) 조합별로
   ![](coredns-query-processing.png)
   - [plugin 종류](https://coredns.io/plugins/)
   - 필요한 plugin만 선별해서 compile 가능. 무겁지 않음.
