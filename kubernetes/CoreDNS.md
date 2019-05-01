@@ -5,7 +5,7 @@
   - kube-dns로도 변경 가능
 - written in Go
 - [SkyDNS](https://github.com/skynetservices/skydns)의 후손, 이것도 Go, etcd 사용
-- 역시 구글러가 만듦; Miek Gieben
+- 역시 구글러가 제작; [Miek Gieben](https://miek.nl/tags/lego/)
 
 ## 장점
 - flexible; pipelining plug-ins
