@@ -1,5 +1,4 @@
-# CoreDNS
-
+![](coredns-logo.png)
 - DNS Server
   - TLS, gRPC, HTTPS 지원
 - Kubernetes에서 기본 DNS로 채용하여 Cloud native DNS server로 사용
