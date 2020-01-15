@@ -18,6 +18,7 @@
 분석을 진행하기 전에 누락값을 처리하는 것이 중요 (왜? 학습이 더 잘되게 하려고? 인식용 데이터도 전처리를 해야할듯, 근데 누락값도 정보 아닌가?)
 
 여기서는 데이터 샘플을 삭제하거나 다른 샘플에서 누락값을 대체하는 실용기법을 본다.
+(https://scikit-learn.org/stable/modules/impute.html#impute 여기 내용인듯)
 
 ### 4.1.1 table 형태의 data에서 누락값 식별
 
@@ -37,6 +38,24 @@
 결론 : 그때그때 다르다.
 
 ### 4.1.3 누락값 대체
+
+샘플 삭제나 feature 제외가 어려울 때가 있음
+유용한 데이터를 너무 많이 잃기 때문
+
+여러가지 보간 기법을 사용하여 누락값을 추정
+sci-kit에서는 평균, median, most_frequent, constant 방식이 제공됨
+(더 있지 않을까?)
+
+### 4.1.4 Sci-kit Learn 추정기 API 익히기
+
+위에서 사용한 Imputer class는 sklearn의 변환기(transformer) class임
+이런 추정기(estimator)는 fit, transform method를 가짐
+- fit : 훈련데이터에서 모델 파라미터를 학습
+- transform : 학습한 모델 파라미터로 데이터를 변환
+- 변환할 데이터 배열 : 모델학습에 사용한 데이터의 feature 개수와 같아야 함
+
+p.142 그림 4-2
+(훈련세트가 변환된다는 걸 자세히 알아보면 좋을듯)
 
 
 
